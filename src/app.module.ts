@@ -10,15 +10,15 @@ import { ArticulosModule } from './articulos/articulos.module';
 
 @Module({
   imports: [
-    // Configuración de variables de entorno
+    // configuración de variables de entorno
     ConfigModule.forRoot({
       isGlobal: true,
     }),
     
-    // Configuración de TypeORM
+    // configuración de TypeORM
     TypeOrmModule.forRoot(databaseConfig),
     
-    // Módulos de la aplicación
+    // modulos de la aplicación
     CarrosModule,
     DocumentosModule,
     ArticulosModule,

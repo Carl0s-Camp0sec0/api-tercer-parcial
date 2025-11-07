@@ -12,20 +12,20 @@ export class ArticulosService {
     private articuloRepository: Repository<Articulo>,
   ) {}
 
-  // CREATE - Crear un nuevo artículo
+  // Crear un nuevo artículo
   async create(createArticuloDto: CreateArticuloDto): Promise<Articulo> {
     const articulo = this.articuloRepository.create(createArticuloDto);
     return await this.articuloRepository.save(articulo);
   }
 
-  // READ - Obtener todos los artículos
+  // Obtener todos los artículos
   async findAll(): Promise<Articulo[]> {
     return await this.articuloRepository.find({
       order: { fecha_creacion: 'DESC' }
     });
   }
 
-  // READ - Obtener un artículo por ID
+  //  Obtener un artículo por ID
   async findOne(id: number): Promise<Articulo> {
     const articulo = await this.articuloRepository.findOne({ where: { id } });
     if (!articulo) {
@@ -34,7 +34,7 @@ export class ArticulosService {
     return articulo;
   }
 
-  // UPDATE - Actualizar un artículo completo (PUT)
+  // Actualizar un artículo completo (PUT)
   async update(id: number, updateArticuloDto: UpdateArticuloDto): Promise<Articulo> {
     const articulo = await this.findOne(id);
     Object.assign(articulo, updateArticuloDto);

@@ -7,12 +7,12 @@ async function bootstrap() {
   
   // Configurar validación global
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true, // Remover propiedades no definidas en el DTO
-    forbidNonWhitelisted: true, // Lanzar error si hay propiedades no permitidas
-    transform: true, // Transformar automáticamente los tipos
+    whitelist: true, // remover propiedades no definidas en el DTO
+    forbidNonWhitelisted: true, // lanzar error si hay propiedades no permitidas
+    transform: true, // transformar automáticamente los tipos
   }));
   
-  // Configurar CORS para desarrollo
+  
   app.enableCors();
   
   // Puerto del servidor

@@ -12,20 +12,20 @@ export class CarrosService {
     private carroRepository: Repository<Carro>,
   ) {}
 
-  // CREATE - Crear un nuevo carro
+  // Crear un nuevo carro
   async create(createCarroDto: CreateCarroDto): Promise<Carro> {
     const carro = this.carroRepository.create(createCarroDto);
     return await this.carroRepository.save(carro);
   }
 
-  // READ - Obtener todos los carros
+  // Obtener todos los carros
   async findAll(): Promise<Carro[]> {
     return await this.carroRepository.find({
       order: { fecha_creacion: 'DESC' }
     });
   }
 
-  // READ - Obtener un carro por ID
+  // Obtener un carro por ID
   async findOne(id: number): Promise<Carro> {
     const carro = await this.carroRepository.findOne({ where: { id } });
     if (!carro) {
@@ -34,7 +34,7 @@ export class CarrosService {
     return carro;
   }
 
-  // UPDATE - Actualizar un carro completo (PUT)
+  // Actualizar un carro completo (PUT)
   async update(id: number, updateCarroDto: UpdateCarroDto): Promise<Carro> {
     const carro = await this.findOne(id);
     Object.assign(carro, updateCarroDto);
@@ -48,7 +48,7 @@ export class CarrosService {
     return await this.carroRepository.save(carro);
   }
 
-  // DELETE - Eliminar un carro
+  // Eliminar un carro
   async remove(id: number): Promise<{ message: string }> {
     const carro = await this.findOne(id);
     await this.carroRepository.remove(carro);

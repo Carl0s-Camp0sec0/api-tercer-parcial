@@ -12,20 +12,20 @@ export class DocumentosService {
     private documentoRepository: Repository<Documento>,
   ) {}
 
-  // CREATE - Crear un nuevo documento
+  // Crear un nuevo documento
   async create(createDocumentoDto: CreateDocumentoDto): Promise<Documento> {
     const documento = this.documentoRepository.create(createDocumentoDto);
     return await this.documentoRepository.save(documento);
   }
 
-  // READ - Obtener todos los documentos
+  // Obtener todos los documentos
   async findAll(): Promise<Documento[]> {
     return await this.documentoRepository.find({
       order: { fecha_creacion: 'DESC' }
     });
   }
 
-  // READ - Obtener un documento por ID
+  // Obtener un documento por ID
   async findOne(id: number): Promise<Documento> {
     const documento = await this.documentoRepository.findOne({ where: { id } });
     if (!documento) {
@@ -34,7 +34,7 @@ export class DocumentosService {
     return documento;
   }
 
-  // UPDATE - Actualizar un documento completo (PUT)
+  // Actualizar un documento completo (PUT)
   async update(id: number, updateDocumentoDto: UpdateDocumentoDto): Promise<Documento> {
     const documento = await this.findOne(id);
     Object.assign(documento, updateDocumentoDto);
@@ -48,7 +48,7 @@ export class DocumentosService {
     return await this.documentoRepository.save(documento);
   }
 
-  // DELETE - Eliminar un documento
+  // Eliminar un documento
   async remove(id: number): Promise<{ message: string }> {
     const documento = await this.findOne(id);
     await this.documentoRepository.remove(documento);
